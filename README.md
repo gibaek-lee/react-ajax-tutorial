@@ -9,4 +9,5 @@ Simple react ajax request via axios, without redux. Virtual server(JSONPlacehold
 </p>
 
 ## Reference
-React tutorial - Velopert Blog [컴포넌트 구성 & AJAX & 애니메이션](https://velopert.com/2597)
+- React tutorial - Velopert Blog [컴포넌트 구성 & AJAX & 애니메이션](https://velopert.com/2597)
+- JSONPlaceholder - [Fake online REST API for Testing and Prototyping](https://jsonplaceholder.typicode.com/)
