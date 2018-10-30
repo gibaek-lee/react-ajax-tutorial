@@ -1,9 +1,7 @@
 # React ajax tutorial
 Simple react ajax request via axios, without redux. Virtual server(JSONPlaceholder) used. SNS kind of page construct via react. Before warning component making
 
-<p align="center">
-  <img width="50%" src="./image/post.png" />
-</p>
+![](./video/ReactAppAjax.gif)
 
 ## Components structure
 <p align="center">
