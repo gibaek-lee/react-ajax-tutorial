@@ -84,48 +84,33 @@ class PostContainer extends Component {
     const postId = this.state.postId;
     if(direction === "Prev") {
       this.fetchPostInfo(postId-1);
-      this.warningAni();
+      if(this.state.warning) {
+        this.warningAni();
+      }
     }
     if(direction === "Next") this.fetchPostInfo(postId+1);
   }
 
   render() {
-    const { postId, fetching, post, comments, styles } = this.state;
-
-    if(!this.state.warning) {
-      return (
-        <PostWrapper>
-          <Navigate
-            postId={postId}
-            disabled={fetching}
-            onClick={this.handleNavigateClick}
-          />
-          <Post
-            title={post.title}
-            body={post.body}
-            comments={comments}
-          />
-        </PostWrapper>
-      );
-    } else {
-      return (
-        <PostWrapper>
-          <Navigate
-            postId={postId}
-            disabled={fetching}
-            onClick={this.handleNavigateClick}
-          />
-          <Post
-            title={post.title}
-            body={post.body}
-            comments={comments}
-          />
-          <Warning
-            styles={styles}
-          />
-        </PostWrapper>
-      );
-    }
+    const { postId, fetching, post, comments, styles, warning } = this.state;
+    return (
+      <PostWrapper>
+        <Navigate
+          postId={postId}
+          disabled={fetching}
+          onClick={this.handleNavigateClick}
+        />
+        <Post
+          title={post.title}
+          body={post.body}
+          comments={comments}
+        />
+        <Warning
+          styles={styles}
+          warning={warning}
+        />
+      </PostWrapper>
+    );
   }
 }
 
