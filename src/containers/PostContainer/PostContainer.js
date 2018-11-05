@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PostWrapper, Navigate, Post } from '../../components';
+import { PostWrapper, Navigate, Post, Warning } from '../../components';
 import * as service from '../../services/post';
 
 class PostContainer extends Component {
@@ -8,11 +8,15 @@ class PostContainer extends Component {
     this.state = {//component 호출됐을 때 state 초기화
       postId: 1,
       fetching: false,//knowing request waiting request or complete. true: requesting, false: complete
+      warning: false,
       post: {
         title: null,
         body: null
       },
-      comments: []
+      comments: [],
+      styles: {
+        opacity: 0,
+      }
     };
   }
   componentDidMount() {//LifeCycleAPI for ajax request
@@ -49,40 +53,79 @@ class PostContainer extends Component {
         },
         comments,
         fetching: false, //done
+        warning: false,
         postId
       });
 
     } catch(e) {
       this.setState({
-        fetching: false
+        fetching: false,
+        warning: true
       });
       console.log('error occured', e);
     }
   }
 
+  warningAni = () => {
+    const frame = () => {
+      console.log("warninng ani running");
+      this.setState((state) => {
+        if(state.styles.opacity > 0.8) {
+          clearInterval(id);
+          return {styles: {opacity: 0}}
+        }
+        return {styles: {opacity: state.styles.opacity + 0.01}}
+      })
+    }
+    var id = setInterval(frame, 15);
+  }
+
   handleNavigateClick = (direction) => {
     const postId = this.state.postId;
-    if(direction === "Prev") this.fetchPostInfo(postId-1);
+    if(direction === "Prev") {
+      this.fetchPostInfo(postId-1);
+      this.warningAni();
+    }
     if(direction === "Next") this.fetchPostInfo(postId+1);
   }
 
   render() {
-    const { postId, fetching, post, comments } = this.state;
+    const { postId, fetching, post, comments, styles } = this.state;
 
-    return (
-      <PostWrapper>
-        <Navigate
-          postId={postId}
-          disabled={fetching}
-          onClick={this.handleNavigateClick}
-        />
-        <Post
-          title={post.title}
-          body={post.body}
-          comments={comments}
-        />
-      </PostWrapper>
-    );
+    if(!this.state.warning) {
+      return (
+        <PostWrapper>
+          <Navigate
+            postId={postId}
+            disabled={fetching}
+            onClick={this.handleNavigateClick}
+          />
+          <Post
+            title={post.title}
+            body={post.body}
+            comments={comments}
+          />
+        </PostWrapper>
+      );
+    } else {
+      return (
+        <PostWrapper>
+          <Navigate
+            postId={postId}
+            disabled={fetching}
+            onClick={this.handleNavigateClick}
+          />
+          <Post
+            title={post.title}
+            body={post.body}
+            comments={comments}
+          />
+          <Warning
+            styles={styles}
+          />
+        </PostWrapper>
+      );
+    }
   }
 }
 
