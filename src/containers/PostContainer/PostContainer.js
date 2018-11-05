@@ -63,6 +63,7 @@ class PostContainer extends Component {
         warning: true
       });
       console.log('error occured', e);
+      this.warningAni();
     }
   }
 
@@ -82,12 +83,7 @@ class PostContainer extends Component {
 
   handleNavigateClick = (direction) => {
     const postId = this.state.postId;
-    if(direction === "Prev") {
-      this.fetchPostInfo(postId-1);
-      if(this.state.warning) {
-        this.warningAni();
-      }
-    }
+    if(direction === "Prev") this.fetchPostInfo(postId-1);
     if(direction === "Next") this.fetchPostInfo(postId+1);
   }
 
