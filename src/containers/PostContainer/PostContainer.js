@@ -6,7 +6,7 @@ class PostContainer extends Component {
   constructor(props) {//LifeCycleAPI for initialize state
     super();
     this.state = {//component 호출됐을 때 state 초기화
-      postId: 1,
+      postId: 0,
       fetching: false,//knowing request waiting request or complete. true: requesting, false: complete
       warning: false,
       post: {
@@ -69,13 +69,12 @@ class PostContainer extends Component {
 
   warningAni = () => {
     const frame = () => {
-      console.log("warninng ani running");
       this.setState((state) => {
         if(state.styles.opacity > 0.8) {
           clearInterval(id);
           return {styles: {opacity: 0}}
         }
-        return {styles: {opacity: state.styles.opacity + 0.01}}
+        return {styles: {opacity: state.styles.opacity + 0.02}}
       })
     }
     var id = setInterval(frame, 15);
@@ -86,17 +85,20 @@ class PostContainer extends Component {
     if(direction === "Prev") this.fetchPostInfo(postId-1);
     if(direction === "Next") this.fetchPostInfo(postId+1);
   }
-
+  
   render() {
     const { postId, fetching, post, comments, styles, warning } = this.state;
+    const disabled = (fetching)
+                  ? true : false;
     return (
       <PostWrapper>
         <Navigate
           postId={postId}
-          disabled={fetching}
+          disabled={disabled}
           onClick={this.handleNavigateClick}
         />
         <Post
+          postId={postId}
           title={post.title}
           body={post.body}
           comments={comments}

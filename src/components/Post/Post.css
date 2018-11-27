@@ -13,3 +13,103 @@
 .Post p {
   font-size: 2rem;
 }
+
+.Post.rightIn {
+  animation-name: rightIn;
+  animation-duration: 1s;
+}
+
+.Post.leftIn {
+  animation-name: leftIn;
+  animation-duration: 1s;
+}
+
+.Post.rightOut {
+  animation-name: rightOut;
+  animation-duration: 1s;
+}
+
+.Post.leftOut {
+  animation-name: leftOut;
+  animation-duration: 1s;
+}
+
+@keyframes leftOut {
+  0%, 60%, 90%, 100% {
+    transition-timing-function: ease;
+  }
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-3000px);
+    opacity: 0;
+  }
+}
+
+@keyframes rightOut {
+  0%, 60%, 90%, 100% {
+    transition-timing-function: ease;
+  }
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(3000px);
+    opacity: 0;
+  }
+}
+
+@keyframes leftIn {
+  0%, 10%, 40%, 100% {
+    transition-timing-function: ease;
+  }
+  0% {
+    transform: translateX(3000px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes rightIn {
+  0%, 10%, 40%, 100% {
+    transition-timing-function: ease;
+  }
+  0% {
+    transform: translateX(-3000px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
