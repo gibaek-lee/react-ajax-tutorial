@@ -1,5 +1,5 @@
 # React ajax tutorial
-Simple react ajax request via axios, without redux. Virtual server(JSONPlaceholder) used. SNS kind of page construct via react. Before warning component making
+Simple react ajax request via axios, without redux. Virtual server(JSONPlaceholder) used. SNS kind of page construct via react. Animation(Warning, Translate) applied version. Check it via [githubPages](https://ginnyang2.github.io/react-ajax-tutorial/)
 
 ![](./video/ReactAppAjax.gif)
 
