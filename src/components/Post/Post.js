@@ -23,7 +23,7 @@ class Post extends Component {
       setTimeout( () => {
         console.log("SetTimeout finished");
         const { postId, title, body, comments } = nextProps;
-        this.setState({
+        this.setState({//Post In Animation render()
           postId,
           title,
           body,
@@ -35,7 +35,7 @@ class Post extends Component {
         싱크 맞추기: animation 1000ms <=> setTimeout 300ms */
       }, 300);
 
-      this.setState({
+      this.setState({//Post Out Animation render()
         navDirection
       })
       return;
