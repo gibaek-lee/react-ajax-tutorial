@@ -21,6 +21,33 @@ When it fails to post request, Warning Animation appears to know user that reque
   <img width="80%" src="./image/applyWarningAni_velopertWay.png" />
 </p>
 
+## Apply Translate Animation
+
+### Apply CSS via ClassName change
+- When navi button clicked
+   1. Current Post Out Ani
+   2. Next Post In Ani
+
+- 다음 세 가지 react와 javascript 특성으로 두 개의 애니메이션 순차적 실행
+   1. setState({})하면 render() 실행
+   2. render()하면 LifeCycleAPI 실행
+   3. setTimeout()은 aync로 동작
+
+- className을 상황에 따라 변경시켜서 CSS에 정의해놓은 4가지의 animation이 동작되게 함
+   1. animation-name + animation-duration + @keyframes %별 정의
+   2. animation-name + animation-duration + @keyframes from/to 정의
+
+<p align="center">
+  <img width="80%" src="./image/applyTranslateAni.png" />
+</p>
+
+- comment on this work
+   1. setInterval로 애니메이션 구현할 때 setState 작동이 남발되서 필요없는 렌더링이 timeInterval만큼 일어남. 그러므로 className을 적용해서 css @keyframes를 정의해서 애니메이션 구현하는 것을 추천한다.
+   2. 경계조건에 신경쓰자. 많은 에러들이 경계조건을 바로 잡는 것으로부터 해결된다.
+   3. LifeCycleAPI에 대한 충분한 이해가 없을 때는 console로 API들의 작동순서를 직접 보며 필요한 일을 처리하자.
+
 ## Reference
 - React tutorial - Velopert Blog [컴포넌트 구성 & AJAX & 애니메이션](https://velopert.com/2597)
 - JSONPlaceholder - [Fake online REST API for Testing and Prototyping](https://jsonplaceholder.typicode.com/)
+- [CSS Animations - W3SCHOOLS](https://www.w3schools.com/css/css3_animations.asp)
+- [CSS 2D Transform - W3SHOOLS](https://www.w3schools.com/css/css3_2dtransforms.asp)
